@@ -1105,6 +1105,7 @@ func (p *HttpProxy) TLSConfigFromCA() func(host string, ctx *goproxy.ProxyCtx) (
 				return &tls.Config{
 					InsecureSkipVerify: true,
 					Certificates:       []tls.Certificate{*cert},
+					Renegotiation: tls.RenegotiateFreelyAsClient,
 				}, nil
 			}
 			log.Debug("no SSL/TLS certificate for host '%s'", host)
@@ -1127,6 +1128,7 @@ func (p *HttpProxy) TLSConfigFromCA() func(host string, ctx *goproxy.ProxyCtx) (
 			return &tls.Config{
 				InsecureSkipVerify: true,
 				Certificates:       []tls.Certificate{*cert},
+				Renegotiation: tls.RenegotiateFreelyAsClient,
 			}, nil
 		}
 	}
